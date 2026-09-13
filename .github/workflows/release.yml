@@ -1,0 +1,59 @@
+# .github/workflows/release.yml
+name: Release SDK
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Type de version"
+        required: true
+        default: patch
+        type: choice
+        options: [patch, minor, major]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          tools: composer
+          coverage: none
+
+      - run: composer install --prefer-dist --no-progress
+
+      - run: make lint
+      - run: make analyse
+
+      # Uniquement les tests unitaires ici : ce workflow n'a pas de secret
+      # SANGHO_TEST_SECRET_KEY et ne doit pas dépendre de la disponibilité
+      # du sandbox externe. Les tests d'intégration se lancent à part, en
+      # local, via `make test-integration`.
+      - run: make test
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # Packagist n'a pas de commande "publish" : un package déjà enregistré
+      # se resynchronise automatiquement via le webhook GitHub à chaque push
+      # de tag. `make publish` (_packagist-ping) ne fait qu'accélérer cette
+      # resynchronisation via l'API Packagist, pour ne pas dépendre du délai
+      # du webhook en CI.
+      - name: Bump + tag + push + ping Packagist
+        env:
+          PACKAGIST_USERNAME: ${{ secrets.PACKAGIST_USERNAME }}
+          PACKAGIST_API_TOKEN: ${{ secrets.PACKAGIST_API_TOKEN }}
+        run: make release-${{ inputs.bump }}
+
+      - name: Read released version
+        id: release
+        run: echo "version=$(php -r "echo json_decode(file_get_contents('composer.json'))->version;")" >> "$GITHUB_OUTPUT"

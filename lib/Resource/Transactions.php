@@ -14,6 +14,16 @@ class Transactions extends AbstractResource
         $this->http->assertSecretKey('transactions.retrieve');
         return $this->http->get("{$this->path}{$id}/");
     }
+    public function update(string $id, array $p): array
+    {
+        $this->http->assertSecretKey('transactions.update');
+        return $this->http->patch("{$this->path}{$id}/", $p);
+    }
+    public function cancel(string $id): array
+    {
+        $this->http->assertSecretKey('transactions.cancel');
+        return $this->http->post("{$this->path}{$id}/cancel/");
+    }
     public function options(): array
     {
         return $this->http->options($this->path);

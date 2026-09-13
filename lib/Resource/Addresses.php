@@ -1,44 +1,43 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Sangho\Resource;
-class Apps extends AbstractResource
+
+class Addresses extends AbstractResource
 {
-    protected string $path = '/apps/';
+    protected string $path = '/addresses/';
+
     public function list(array $c = []): array
     {
-        $this->http->assertSecretKey('apps.list');
+        $this->http->assertSecretKey('addresses.list');
         return $this->http->get($this->path, $c);
     }
+
     public function retrieve(string $id): array
     {
-        $this->http->assertSecretKey('apps.retrieve');
+        $this->http->assertSecretKey('addresses.retrieve');
         return $this->http->get("{$this->path}{$id}/");
     }
+
     public function create(array $p): array
     {
-        $this->http->assertSecretKey('apps.create');
+        $this->http->assertSecretKey('addresses.create');
         return $this->http->post($this->path, $p);
     }
+
     public function update(string $id, array $p): array
     {
-        $this->http->assertSecretKey('apps.update');
+        $this->http->assertSecretKey('addresses.update');
         return $this->http->patch("{$this->path}{$id}/", $p);
     }
+
     public function delete(string $id): void
     {
-        $this->http->assertSecretKey('apps.delete');
+        $this->http->assertSecretKey('addresses.delete');
         $this->http->delete("{$this->path}{$id}/");
     }
-    public function rollSecret(string $id): array
-    {
-        $this->http->assertSecretKey('apps.rollSecret');
-        return $this->http->post("{$this->path}{$id}/roll-secret/");
-    }
-    public function keys(string $id): array
-    {
-        $this->http->assertSecretKey('apps.keys');
-        return $this->http->get("{$this->path}{$id}/keys/");
-    }
+
     public function options(): array
     {
         return $this->http->options($this->path);

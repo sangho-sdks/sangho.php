@@ -34,6 +34,11 @@ class Customers extends AbstractResource
         $this->http->assertSecretKey('customers.listTransactions');
         return $this->http->get("{$this->path}{$id}/transactions/", $c);
     }
+    public function listPaymentMethods(string $id): array
+    {
+        $this->http->assertSecretKey('customers.listPaymentMethods');
+        return $this->http->get("{$this->path}{$id}/payment-methods/");
+    }
     public function options(): array
     {
         return $this->http->options($this->path);

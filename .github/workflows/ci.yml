@@ -1,0 +1,41 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Couvre les versions supportées déclarées dans composer.json
+        # ("php": "^8.2 || ^8.3 || ^8.4 || ^8.5"), à l'image des matrices
+        # de versions des SDK JS (engines.node) et Python (python-version).
+        php-version: ["8.2", "8.3", "8.4", "8.5"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: composer
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Lint
+        run: make lint
+
+      - name: Analyse statique
+        run: make analyse
+
+      # Uniquement les tests unitaires ici : ce workflow n'a pas de secret
+      # SANGHO_TEST_SECRET_KEY et ne doit pas dépendre de la disponibilité
+      # du sandbox externe. Les tests d'intégration se lancent à part, en
+      # local, via `make test-integration`.
+      - name: Tests
+        run: make test

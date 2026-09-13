@@ -1,1 +1,0 @@
-{"version":2,"defects":[],"times":{"Sangho\\Tests\\CustomersTest::testListCustomers":0.137,"Sangho\\Tests\\CustomersTest::testRetrieveCustomer":0.001,"Sangho\\Tests\\CustomersTest::testPublicKeyThrows":0.007}}

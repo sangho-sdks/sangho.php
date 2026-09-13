@@ -24,10 +24,20 @@ class PaymentLinks extends AbstractResource
         $this->http->assertSecretKey('paymentLinks.update');
         return $this->http->patch("{$this->path}{$id}/", $p);
     }
-    public function deactivate(string $id): array
+    public function delete(string $id): void
     {
-        $this->http->assertSecretKey('paymentLinks.deactivate');
-        return $this->http->post("{$this->path}{$id}/deactivate/");
+        $this->http->assertSecretKey('paymentLinks.delete');
+        $this->http->delete("{$this->path}{$id}/");
+    }
+    public function archive(string $id): array
+    {
+        $this->http->assertSecretKey('paymentLinks.archive');
+        return $this->http->post("{$this->path}{$id}/archive/");
+    }
+    public function restore(string $id): array
+    {
+        $this->http->assertSecretKey('paymentLinks.restore');
+        return $this->http->post("{$this->path}{$id}/restore/");
     }
     public function options(): array
     {

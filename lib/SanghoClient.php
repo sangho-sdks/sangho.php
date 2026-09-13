@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Sangho;
 
 use Sangho\Resource\{
+    Account,
+    Addresses,
     Apps,
     Customers,
     Products,
@@ -19,11 +21,15 @@ use Sangho\Resource\{
     Receipts,
     Webhooks,
     Security,
-    Partners
+    Partners,
+    Terminal,
+    Sandbox
 };
 
 class SanghoClient
 {
+    public readonly Account $account;
+    public readonly Addresses $addresses;
     public readonly Apps $apps;
     public readonly Customers $customers;
     public readonly Products $products;
@@ -39,14 +45,19 @@ class SanghoClient
     public readonly Webhooks $webhooks;
     public readonly Security $security;
     public readonly Partners $partners;
+    public readonly Terminal $terminal;
+    public readonly Sandbox $sandbox;
 
     public function __construct(
         string $apiKey,
-        string $baseUrl = 'https://api.sangho.com/v1',
-        int $timeout = 30
+        string $baseUrl = 'https://api.sangho.ga/v1',
+        int $timeout = 30,
+        int $maxRetries = 3,
     ) {
-        $http = new HttpClient($apiKey, $baseUrl, $timeout);
+        $http = new HttpClient($apiKey, $baseUrl, $timeout, $maxRetries);
 
+        $this->account = new Account($http);
+        $this->addresses = new Addresses($http);
         $this->apps = new Apps($http);
         $this->customers = new Customers($http);
         $this->products = new Products($http);
@@ -62,5 +73,21 @@ class SanghoClient
         $this->webhooks = new Webhooks($http);
         $this->security = new Security($http);
         $this->partners = new Partners($http);
+        $this->terminal = new Terminal($http);
+        $this->sandbox = new Sandbox($http);
+    }
+
+    /**
+     * Vérifie et parse un événement webhook entrant (signature HMAC-SHA256 +
+     * protection anti-replay). Délègue à Webhooks::constructEvent — exposé
+     * ici aussi pour un accès direct sans instancier de ressource.
+     */
+    public static function constructEvent(
+        string $payload,
+        string $signatureHeader,
+        string $secret,
+        int $tolerance = 300,
+    ): array {
+        return Webhooks::constructEvent($payload, $signatureHeader, $secret, $tolerance);
     }
 }

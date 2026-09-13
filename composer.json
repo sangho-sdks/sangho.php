@@ -3,22 +3,25 @@
   "description": "SDK officiel PHP pour l'API Sangho",
   "type": "library",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "authors": [
-    { 
-      "name": "Sangho", 
-      "email": "dev@sangho.com" 
+    {
+      "name": "Sangho",
+      "email": "nels.holy.allg@gmail.com"
     }
   ],
-  "homepage": "https://docs.sangho.com",
+  "homepage": "https://docs.sangho.ga/api/sdks/php/",
+  "keywords": ["sangho", "payments", "africa", "xaf", "mobile-money", "sdk", "php"],
   "require": {
-    "php": ">=8.5",
+    "php": "^8.2 || ^8.3 || ^8.4 || ^8.5",
     "guzzlehttp/guzzle": "^7.10",
     "ramsey/uuid": "^4.9"
   },
   "require-dev": {
     "phpunit/phpunit": "^10.5",
-    "mockery/mockery": "^1.6"
+    "mockery/mockery": "^1.6",
+    "squizlabs/php_codesniffer": "^3.9",
+    "phpstan/phpstan": "^1.11"
   },
   "autoload": {
     "psr-4": {
@@ -38,7 +41,8 @@
     "sort-packages": true
   },
   "support": {
-    "source": "https://github.com/sangho-sdks/sangho-php",
-    "issues": "https://github.com/sangho-sdks/sangho-php/issues"
+    "source": "https://github.com/sangho-sdks/sangho.php",
+    "issues": "https://github.com/sangho-sdks/sangho.php/issues",
+    "docs": "https://docs.sangho.ga/api/sdks/php/"
   }
 }

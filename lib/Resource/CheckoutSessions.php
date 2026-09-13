@@ -11,7 +11,8 @@ class CheckoutSessions extends AbstractResource
     }
     public function retrieve(string $id): array
     {
-        $this->http->assertSecretKey('checkoutSessions.retrieve');
+        // Le backend autorise explicitement la clé publique sur cette action
+        // (page de confirmation côté navigateur) — ne pas la bloquer ici.
         return $this->http->get("{$this->path}{$id}/");
     }
     public function create(array $p): array
@@ -23,6 +24,11 @@ class CheckoutSessions extends AbstractResource
     {
         $this->http->assertSecretKey('checkoutSessions.expire');
         return $this->http->post("{$this->path}{$id}/expire/");
+    }
+    public function delete(string $id): void
+    {
+        $this->http->assertSecretKey('checkoutSessions.delete');
+        $this->http->delete("{$this->path}{$id}/");
     }
     public function options(): array
     {

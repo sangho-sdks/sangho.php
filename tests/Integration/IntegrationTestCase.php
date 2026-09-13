@@ -12,7 +12,7 @@ use Sangho\SanghoClient;
  * Variables d'environnement requises :
  *   SANGHO_TEST_SECRET_KEY   sk_test_xxx
  *   SANGHO_TEST_PUBLIC_KEY   pk_test_xxx
- *   SANGHO_API_BASE_URL      https://api.sangho.com/v1 (optionnel)
+ *   SANGHO_API_BASE_URL      https://api.sangho.ga/v1 (optionnel)
  *
  * Lancement :
  *   SANGHO_TEST_SECRET_KEY=sk_test_xxx vendor/bin/phpunit --testsuite Integration
@@ -32,7 +32,7 @@ abstract class IntegrationTestCase extends TestCase
             self::markTestSkipped('SANGHO_TEST_SECRET_KEY not set — integration tests skipped.');
         }
 
-        self::$baseUrl   = getenv('SANGHO_API_BASE_URL') ?: 'https://api.sangho.com/v1';
+        self::$baseUrl   = getenv('SANGHO_API_BASE_URL') ?: 'https://api.sangho.ga/v1';
         self::$client    = new SanghoClient($secretKey, self::$baseUrl);
 
         if ($publicKey) {

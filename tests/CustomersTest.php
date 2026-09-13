@@ -20,7 +20,7 @@ class CustomersTest extends TestCase
     {
         $mock    = new MockHandler($responses);
         $handler = HandlerStack::create($mock);
-        $http    = new HttpClient('sk_test_abc123456789', 'https://api.sangho.com/v1');
+        $http    = new HttpClient('sk_test_abc123456789', 'https://api.sangho.ga/v1');
 
         // Inject mock via reflection
         $ref  = new \ReflectionProperty(HttpClient::class, 'guzzle');

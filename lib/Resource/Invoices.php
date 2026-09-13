@@ -54,6 +54,11 @@ class Invoices extends AbstractResource
         $this->http->assertSecretKey('invoices.send');
         return $this->http->post("{$this->path}{$id}/send/");
     }
+    public function getPdfUrl(string $id): array
+    {
+        $this->http->assertSecretKey('invoices.getPdfUrl');
+        return $this->http->get("{$this->path}{$id}/pdf/");
+    }
     public function options(): array
     {
         return $this->http->options($this->path);

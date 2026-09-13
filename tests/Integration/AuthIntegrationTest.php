@@ -42,7 +42,7 @@ class AuthIntegrationTest extends IntegrationTestCase
 
     public function testAllValidPrefixesAccepted(): void
     {
-        foreach (['sk_live_', 'sk_test_', 'pk_live_', 'pk_test_'] as $prefix) {
+        foreach (['sk_prod_', 'sk_test_', 'pk_prod_', 'pk_test_'] as $prefix) {
             $client = new SanghoClient($prefix . str_repeat('x', 20), self::$baseUrl);
             $this->assertInstanceOf(SanghoClient::class, $client);
         }

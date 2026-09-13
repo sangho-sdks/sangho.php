@@ -35,6 +35,16 @@ class Webhooks extends AbstractResource
         $this->http->assertSecretKey('webhooks.rollSecret');
         return $this->http->post("{$this->path}{$id}/roll-secret/");
     }
+    public function disable(string $id): array
+    {
+        $this->http->assertSecretKey('webhooks.disable');
+        return $this->http->post("{$this->path}{$id}/disable/");
+    }
+    public function enable(string $id): array
+    {
+        $this->http->assertSecretKey('webhooks.enable');
+        return $this->http->post("{$this->path}{$id}/enable/");
+    }
     public function sendTestEvent(string $id, string $eventType): array
     {
         $this->http->assertSecretKey('webhooks.sendTestEvent');
@@ -44,6 +54,11 @@ class Webhooks extends AbstractResource
     {
         $this->http->assertSecretKey('webhooks.listDeliveries');
         return $this->http->get("{$this->path}{$id}/deliveries/", $c);
+    }
+    public function retrieveDelivery(string $id, string $deliveryId): array
+    {
+        $this->http->assertSecretKey('webhooks.retrieveDelivery');
+        return $this->http->get("{$this->path}{$id}/deliveries/{$deliveryId}/");
     }
     public function retryDelivery(string $id, string $deliveryId): array
     {
