@@ -1,5 +1,5 @@
 {
-  "name": "sangho/sangho",
+  "name": "sangho/sdk",
   "description": "SDK officiel PHP pour l'API Sangho",
   "type": "library",
   "license": "MIT",

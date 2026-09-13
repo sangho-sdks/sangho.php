@@ -204,7 +204,7 @@ _git-tag-and-push:
 # INFOS
 # -----------------------------------------------------------------------------
 info: ## Affiche les infos du SDK
-	@echo "$(BOLD)Package :$(RESET) sangho/sangho"
+	@echo "$(BOLD)Package :$(RESET) sangho/sdk"
 	@echo "$(BOLD)Version :$(RESET) $(VERSION)"
 	@echo "$(BOLD)PHP     :$(RESET) $(shell $(PHP) --version | head -n1)"
 	@echo "$(BOLD)Composer:$(RESET) $(shell $(COMPOSER) --version 2>/dev/null)"
