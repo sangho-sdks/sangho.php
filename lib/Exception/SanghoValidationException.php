@@ -17,7 +17,8 @@ class SanghoValidationException extends SanghoException
             $parts[] = "{$field}: " . implode(', ', $errors);
         }
         $summary = implode(' | ', $parts);
-        $message = $summary !== '' ? $summary : ((is_string($raw['message'] ?? null)) ? $raw['message'] : 'Validation error');
+        $fallback = is_string($raw['message'] ?? null) ? $raw['message'] : 'Validation error';
+        $message = $summary !== '' ? $summary : $fallback;
 
         parent::__construct($message, 'validation_error', 422, $raw, type: 'VALIDATION_ERROR');
     }

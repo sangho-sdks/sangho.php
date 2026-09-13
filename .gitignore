@@ -18,6 +18,9 @@ clover.xml
 build/
 dist/
 
+# ── Logs (dumps locaux pour debug) ─────────────────────────
+.logs/
+
 # ── IDE ───────────────────────────────────────────────────
 .vscode/
 .idea/

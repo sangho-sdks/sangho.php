@@ -2,7 +2,7 @@
 
 SDK officiel PHP pour l'API [Sangho](https://sangho.ga) — paiements XAF pour l'Afrique.
 
-[![Packagist](https://img.shields.io/packagist/v/sangho/sdk.svg)](https://packagist.org/packages/sangho/sdk)
+[![Packagist](https://img.shields.io/packagist/v/sangho/sangho.svg)](https://packagist.org/packages/sangho/sangho)
 [![CI](https://github.com/sangho-sdks/sangho.php/actions/workflows/ci.yml/badge.svg)](https://github.com/sangho-sdks/sangho.php/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -11,7 +11,7 @@ SDK officiel PHP pour l'API [Sangho](https://sangho.ga) — paiements XAF pour l
 ## Installation
 
 ```bash
-composer require sangho/sdk
+composer require sangho/sangho
 ```
 
 ## Quickstart

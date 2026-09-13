@@ -1,0 +1,1311 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Sangho\\\\Exception\\\\SanghoException\\:\\:__construct\\(\\) has parameter \\$raw with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Exception/SanghoException.php
+
+		-
+			message: "#^Method Sangho\\\\Exception\\\\SanghoRateLimitException\\:\\:__construct\\(\\) has parameter \\$raw with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Exception/SanghoRateLimitException.php
+
+		-
+			message: "#^Method Sangho\\\\Exception\\\\SanghoValidationException\\:\\:__construct\\(\\) has parameter \\$raw with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Exception/SanghoValidationException.php
+
+		-
+			message: "#^Method Sangho\\\\Exception\\\\SanghoValidationException\\:\\:getFieldErrors\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Exception/SanghoValidationException.php
+
+		-
+			message: "#^Cannot call method getBody\\(\\) on Psr\\\\Http\\\\Message\\\\ResponseInterface\\|null\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Cannot call method getStatusCode\\(\\) on Psr\\\\Http\\\\Message\\\\ResponseInterface\\|null\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:get\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:get\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:parseRetryAfter\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:patch\\(\\) has parameter \\$body with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:patch\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:post\\(\\) has parameter \\$body with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:post\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:put\\(\\) has parameter \\$body with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:put\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:raiseForStatus\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\HttpClient\\:\\:request\\(\\) has parameter \\$opts with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Property Sangho\\\\HttpClient\\:\\:\\$apiKey is never read, only written\\.$#"
+			count: 1
+			path: lib/HttpClient.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Account\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Account.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Addresses\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Addresses.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Addresses\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Addresses.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Addresses\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Addresses.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Addresses\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Addresses.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Addresses\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Addresses.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Addresses\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Addresses.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Addresses\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Addresses.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Addresses\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Addresses.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Addresses\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Addresses.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:keys\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:rollSecret\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:rollSecret\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Apps\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Apps.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\CheckoutSessions\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/CheckoutSessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\CheckoutSessions\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/CheckoutSessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\CheckoutSessions\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/CheckoutSessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\CheckoutSessions\\:\\:expire\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/CheckoutSessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\CheckoutSessions\\:\\:expire\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/CheckoutSessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\CheckoutSessions\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/CheckoutSessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\CheckoutSessions\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/CheckoutSessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\CheckoutSessions\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/CheckoutSessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\CheckoutSessions\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/CheckoutSessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:listPaymentMethods\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:listTransactions\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:listTransactions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Customers\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Customers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:finalize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:finalize\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:getPdfUrl\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:markUncollectible\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:markUncollectible\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:pay\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:pay\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:pay\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:send\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:send\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:void\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Invoices\\:\\:void\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Invoices.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Partners\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Partners.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Partners\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Partners.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Partners\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Partners.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Partners\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Partners.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Partners\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Partners.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Partners\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Partners.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Partners\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Partners.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Partners\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Partners.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Partners\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Partners.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:cancel\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:cancel\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:cancel\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:capture\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:capture\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:capture\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:confirm\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:confirm\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:confirm\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentIntents\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentIntents.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:archive\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:archive\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:restore\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:restore\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentLinks\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentLinks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:attach\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:attach\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:detach\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:detach\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:setDefault\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:setDefault\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\PaymentMethods\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/PaymentMethods.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:archive\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:archive\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:restore\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:restore\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Products\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Products.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Receipts\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Receipts.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Receipts\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Receipts.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Receipts\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Receipts.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Receipts\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Receipts.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Receipts\\:\\:send\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Receipts.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Receipts\\:\\:send\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Receipts.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:cancel\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:cancel\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Refunds\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Refunds.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Sandbox\\:\\:reset\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Sandbox.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:addAllowedIps\\(\\) has parameter \\$ips with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:addAllowedIps\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:listSessions\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:listSessions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:removeAllowedIps\\(\\) has parameter \\$ips with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:removeAllowedIps\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:rollSecretKey\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:rollSecretKey\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Security\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Security.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:cancel\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:cancel\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:cancel\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:pause\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:pause\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:resume\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:resume\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Subscriptions\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Subscriptions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Offline\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Offline.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Offline\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Offline.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Offline\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Offline.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Offline\\:\\:sync\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Offline.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Offline\\:\\:sync\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Offline.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Offline\\:\\:sync\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Offline.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:heartbeat\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:heartbeat\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:refreshToken\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:refreshToken\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Readers\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Readers.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:cancel\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:cancel\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:pollStatus\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:presentPaymentMethod\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:presentPaymentMethod\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:presentPaymentMethod\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Terminal\\\\Sessions\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Terminal/Sessions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Transactions\\:\\:cancel\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Transactions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Transactions\\:\\:cancel\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Transactions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Transactions\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Transactions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Transactions\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Transactions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Transactions\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Transactions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Transactions\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Transactions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Transactions\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Transactions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Transactions\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Transactions.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:constructEvent\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:create\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:create\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:create\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:disable\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:disable\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:enable\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:enable\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:list\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:list\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:listDeliveries\\(\\) has parameter \\$c with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:listDeliveries\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:options\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:retrieve\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:retrieveDelivery\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:retryDelivery\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:retryDelivery\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:rollSecret\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:rollSecret\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:sendTestEvent\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:sendTestEvent\\(\\) should return array but returns array\\|null\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:update\\(\\) has parameter \\$p with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Resource\\\\Webhooks\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Resource/Webhooks.php
+
+		-
+			message: "#^Method Sangho\\\\Sangho\\:\\:constructEvent\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/Sangho.php
+
+		-
+			message: "#^Method Sangho\\\\SanghoClient\\:\\:constructEvent\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: lib/SanghoClient.php

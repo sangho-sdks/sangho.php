@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Sangho\Tests\Integration;
@@ -25,7 +26,10 @@ class ProductsIntegrationTest extends IntegrationTestCase
     public static function tearDownAfterClass(): void
     {
         if (self::$sharedProduct) {
-            try { self::$client->products->delete(self::$sharedProduct['id']); } catch (\Throwable) {}
+            try {
+                self::$client->products->delete(self::$sharedProduct['id']);
+            } catch (\Throwable) {
+            }
         }
     }
 

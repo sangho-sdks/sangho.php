@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Sangho\Resource;
+
 class PaymentLinks extends AbstractResource
 {
     protected string $path = '/payment-links/';

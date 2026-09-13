@@ -16,8 +16,11 @@ use Sangho\Exception\SanghoRateLimitException;
 
 class HttpClientTest extends TestCase
 {
-    private function makeClient(array $responses, string $apiKey = 'sk_test_abc123456789', int $maxRetries = 0): Customers
-    {
+    private function makeClient(
+        array $responses,
+        string $apiKey = 'sk_test_abc123456789',
+        int $maxRetries = 0
+    ): Customers {
         $mock    = new MockHandler($responses);
         $handler = HandlerStack::create($mock);
         $http    = new HttpClient($apiKey, 'https://api.sangho.ga/v1', 30, $maxRetries);

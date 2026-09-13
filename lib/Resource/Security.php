@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Sangho\Resource;
+
 class Security extends AbstractResource
 {
     protected string $path = '/security/';

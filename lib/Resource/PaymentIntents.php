@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Sangho\Resource;
+
 class PaymentIntents extends AbstractResource
 {
     protected string $path = '/payment-intents/';

@@ -91,9 +91,9 @@ format: ## Corrige automatiquement le style (PSR-12)
 	$(PHPCBF) --standard=PSR12 lib/ tests/
 	@echo "$(GREEN)✓ Style corrigé$(RESET)"
 
-analyse: ## Analyse statique (PHPStan niveau 8)
+analyse: ## Analyse statique (PHPStan niveau 8, cf. phpstan.neon + baseline)
 	@echo "$(CYAN)→ Analyse statique...$(RESET)"
-	$(PHPSTAN) analyse lib/ --level=8
+	$(PHPSTAN) analyse
 	@echo "$(GREEN)✓ Analyse OK$(RESET)"
 
 check: lint analyse ## Lint + analyse statique (pipeline qualité)
@@ -204,7 +204,7 @@ _git-tag-and-push:
 # INFOS
 # -----------------------------------------------------------------------------
 info: ## Affiche les infos du SDK
-	@echo "$(BOLD)Package :$(RESET) sangho/sdk"
+	@echo "$(BOLD)Package :$(RESET) sangho/sangho"
 	@echo "$(BOLD)Version :$(RESET) $(VERSION)"
 	@echo "$(BOLD)PHP     :$(RESET) $(shell $(PHP) --version | head -n1)"
 	@echo "$(BOLD)Composer:$(RESET) $(shell $(COMPOSER) --version 2>/dev/null)"

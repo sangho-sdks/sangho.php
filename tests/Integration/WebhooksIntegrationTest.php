@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Sangho\Tests\Integration;
@@ -26,7 +27,10 @@ class WebhooksIntegrationTest extends IntegrationTestCase
     public static function tearDownAfterClass(): void
     {
         if (self::$sharedWebhook) {
-            try { self::$client->webhooks->delete(self::$sharedWebhook['id']); } catch (\Throwable) {}
+            try {
+                self::$client->webhooks->delete(self::$sharedWebhook['id']);
+            } catch (\Throwable) {
+            }
         }
     }
 

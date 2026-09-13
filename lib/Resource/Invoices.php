@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Sangho\Resource;
+
 class Invoices extends AbstractResource
 {
     protected string $path = '/invoices/';

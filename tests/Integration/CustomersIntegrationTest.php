@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Sangho\Tests\Integration;
@@ -31,7 +32,8 @@ class CustomersIntegrationTest extends IntegrationTestCase
         if (self::$sharedCustomer) {
             try {
                 self::$client->customers->delete(self::$sharedCustomer['id']);
-            } catch (\Throwable) {}
+            } catch (\Throwable) {
+            }
         }
     }
 

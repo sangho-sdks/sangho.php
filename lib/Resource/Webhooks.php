@@ -1,7 +1,11 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Sangho\Resource;
+
 use Sangho\Exception\SanghoException;
+
 class Webhooks extends AbstractResource
 {
     protected string $path = '/webhooks/';
@@ -69,20 +73,27 @@ class Webhooks extends AbstractResource
     {
         return $this->http->options($this->path);
     }
-    public static function constructEvent(string $payload, string $signatureHeader, string $secret, int $tolerance = 300): array
-    {
+    public static function constructEvent(
+        string $payload,
+        string $signatureHeader,
+        string $secret,
+        int $tolerance = 300
+    ): array {
         $parts = [];
         foreach (explode(',', $signatureHeader) as $p) {
             [$k, $v] = explode('=', $p, 2) + [null, null];
             $parts[$k] = $v;
         }
-        if (!($parts['t'] ?? null) || !($parts['v1'] ?? null))
+        if (!($parts['t'] ?? null) || !($parts['v1'] ?? null)) {
             throw new SanghoException('Invalid Sangho-Signature header.', 'invalid_signature');
-        if (abs(time() - (int) $parts['t']) > $tolerance)
+        }
+        if (abs(time() - (int) $parts['t']) > $tolerance) {
             throw new SanghoException('Webhook timestamp too old.', 'stale_event');
+        }
         $expected = hash_hmac('sha256', "{$parts['t']}.{$payload}", $secret);
-        if (!hash_equals($expected, $parts['v1']))
+        if (!hash_equals($expected, $parts['v1'])) {
             throw new SanghoException('Webhook signature mismatch.', 'invalid_signature');
+        }
         return json_decode($payload, true, 512, JSON_THROW_ON_ERROR);
     }
 }
