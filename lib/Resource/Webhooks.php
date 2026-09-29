@@ -98,7 +98,8 @@ class Webhooks extends AbstractResource
 
         $matched = false;
         foreach ((array) $secret as $candidate) {
-            if (!is_string($candidate) || $candidate === '') {
+            $candidate = (string) $candidate;
+            if ($candidate === '') {
                 continue;
             }
             $expected = hash_hmac('sha256', "{$timestamp}.{$payload}", $candidate);
