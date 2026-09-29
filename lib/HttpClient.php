@@ -23,7 +23,7 @@ class HttpClient
     private const VALID_PREFIXES = ['pk_prod_', 'sk_prod_', 'pk_test_', 'sk_test_'];
 
     public function __construct(
-        private readonly string $apiKey,
+        string $apiKey,
         private readonly string $baseUrl = 'https://api.sangho.ga/v1',
         private readonly int $timeout = 30,
         private readonly int $maxRetries = 3,
