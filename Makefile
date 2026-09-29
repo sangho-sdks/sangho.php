@@ -84,7 +84,7 @@ test-integration: ## Tests intégration sandbox (nécessite SANGHO_TEST_SECRET_K
 # -----------------------------------------------------------------------------
 lint: ## Lint du code source (PSR-12)
 	@echo "$(CYAN)→ Lint...$(RESET)"
-	$(PHPCS) --standard=PSR12 lib/ tests/
+	$(PHPCS)
 
 format: ## Corrige automatiquement le style (PSR-12)
 	@echo "$(CYAN)→ Format...$(RESET)"

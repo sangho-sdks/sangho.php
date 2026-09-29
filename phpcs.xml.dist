@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="Sangho PHP SDK">
+    <description>PSR-12, avec une limite de ligne portée à 170 caractères (tableaux de test et docblocks d'API).</description>
+    <rule ref="PSR12"/>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="170"/>
+            <property name="absoluteLineLimit" value="0"/>
+        </properties>
+    </rule>
+    <file>lib</file>
+    <file>tests</file>
+</ruleset>
