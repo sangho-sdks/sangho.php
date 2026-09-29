@@ -54,13 +54,24 @@ class Sangho
         return self::$instance ??= new SanghoClient(self::$apiKey, self::$baseUrl, self::$timeout, self::$maxRetries);
     }
 
-    /** Raccourci vers SanghoClient::constructEvent — pas besoin de clé API pour vérifier une signature. */
+    /**
+     * Raccourci vers SanghoClient::constructEvent — pas besoin de clé API pour vérifier une signature.
+     *
+     * @param string|list<string> $secret Secret du webhook, ou liste de secrets pendant une rotation
+     * @return array<string, mixed>
+     */
     public static function constructEvent(
         string $payload,
         string $signatureHeader,
-        string $secret,
+        string|array $secret,
         int $tolerance = 300,
     ): array {
         return SanghoClient::constructEvent($payload, $signatureHeader, $secret, $tolerance);
+    }
+
+    /** Raccourci vers SanghoClient::generateTestHeader — en-tête `Sangho-Signature` valide pour tester votre endpoint. */
+    public static function generateTestHeader(string $payload, string $secret, ?int $timestamp = null): string
+    {
+        return SanghoClient::generateTestHeader($payload, $secret, $timestamp);
     }
 }

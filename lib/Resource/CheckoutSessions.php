@@ -18,10 +18,10 @@ class CheckoutSessions extends AbstractResource
         // (page de confirmation côté navigateur) — ne pas la bloquer ici.
         return $this->http->get("{$this->path}{$id}/");
     }
-    public function create(array $p): array
+    public function create(array $p, ?string $idempotencyKey = null): array
     {
         $this->http->assertSecretKey('checkoutSessions.create');
-        return $this->http->post($this->path, $p);
+        return $this->http->post($this->path, $p, $idempotencyKey);
     }
     public function expire(string $id): array
     {

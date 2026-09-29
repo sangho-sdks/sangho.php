@@ -8,6 +8,7 @@ use Sangho\Resource\{
     Account,
     Addresses,
     Apps,
+    Connect,
     Customers,
     Products,
     PaymentIntents,
@@ -46,6 +47,7 @@ class SanghoClient
     public readonly Security $security;
     public readonly Partners $partners;
     public readonly Terminal $terminal;
+    public readonly Connect $connect;
     public readonly Sandbox $sandbox;
 
     public function __construct(
@@ -74,6 +76,7 @@ class SanghoClient
         $this->security = new Security($http);
         $this->partners = new Partners($http);
         $this->terminal = new Terminal($http);
+        $this->connect = new Connect($http);
         $this->sandbox = new Sandbox($http);
     }
 
@@ -81,13 +84,24 @@ class SanghoClient
      * Vérifie et parse un événement webhook entrant (signature HMAC-SHA256 +
      * protection anti-replay). Délègue à Webhooks::constructEvent — exposé
      * ici aussi pour un accès direct sans instancier de ressource.
+     *
+     * @param string|list<string> $secret Secret du webhook, ou liste de secrets pendant une rotation
+     * @return array<string, mixed>
      */
     public static function constructEvent(
         string $payload,
         string $signatureHeader,
-        string $secret,
+        string|array $secret,
         int $tolerance = 300,
     ): array {
         return Webhooks::constructEvent($payload, $signatureHeader, $secret, $tolerance);
+    }
+
+    /**
+     * Génère un en-tête `Sangho-Signature` valide pour tester votre endpoint webhook.
+     */
+    public static function generateTestHeader(string $payload, string $secret, ?int $timestamp = null): string
+    {
+        return Webhooks::generateTestHeader($payload, $secret, $timestamp);
     }
 }

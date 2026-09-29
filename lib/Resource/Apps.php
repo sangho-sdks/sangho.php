@@ -17,10 +17,10 @@ class Apps extends AbstractResource
         $this->http->assertSecretKey('apps.retrieve');
         return $this->http->get("{$this->path}{$id}/");
     }
-    public function create(array $p): array
+    public function create(array $p, ?string $idempotencyKey = null): array
     {
         $this->http->assertSecretKey('apps.create');
-        return $this->http->post($this->path, $p);
+        return $this->http->post($this->path, $p, $idempotencyKey);
     }
     public function update(string $id, array $p): array
     {
