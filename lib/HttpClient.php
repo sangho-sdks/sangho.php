@@ -16,7 +16,7 @@ class HttpClient
     public readonly string $keyType; // 'public' | 'secret'
     public readonly bool $sandbox;
 
-    public const SDK_VERSION = '0.1.4';
+    public const SDK_VERSION = '0.2.0';
 
     // Le backend distingue les clés de production ("prod") des clés de test
     // ("test") — il n'existe pas de préfixe "live" côté API Sangho.
@@ -97,13 +97,21 @@ class HttpClient
         return $this->request('GET', $path, ['query' => array_filter($params, fn($v) => $v !== null)]);
     }
 
-    public function post(string $path, array $body = []): ?array
+    /**
+     * POST avec en-tête `Idempotency-Key`. La clé peut être fournie en argument ou via `idempotency_key` dans le
+     * corps ; sans clé, une nouvelle est générée et un POST n'est PAS rejoué après un timeout / une erreur réseau
+     * (le serveur a pu le traiter : risque de doublon). Avec une clé fournie, ce rejeu est sûr et activé.
+     */
+    public function post(string $path, array $body = [], ?string $idempotencyKey = null): ?array
     {
-        $idempotencyKey = \Ramsey\Uuid\Uuid::uuid4()->toString();
+        if ($idempotencyKey === null && isset($body['idempotency_key']) && is_string($body['idempotency_key'])) {
+            $idempotencyKey = $body['idempotency_key'];
+        }
+        unset($body['idempotency_key']);
         return $this->request('POST', $path, [
             'json' => $body,
-            'headers' => ['Idempotency-Key' => $idempotencyKey],
-        ]);
+            'headers' => ['Idempotency-Key' => $idempotencyKey ?? \Ramsey\Uuid\Uuid::uuid4()->toString()],
+        ], retryTransport: $idempotencyKey !== null);
     }
 
     public function put(string $path, array $body = []): ?array
@@ -126,7 +134,7 @@ class HttpClient
         return $this->request('OPTIONS', $path);
     }
 
-    private function request(string $method, string $path, array $opts = []): mixed
+    private function request(string $method, string $path, array $opts = [], bool $retryTransport = true): mixed
     {
         $path = ltrim($path, '/');
         $attempt = 0;
@@ -135,8 +143,9 @@ class HttpClient
             try {
                 $resp = $this->guzzle->request($method, $path, $opts);
             } catch (ConnectException $e) {
-                // Jamais de réponse du serveur (DNS, connexion refusée, timeout...) — transitoire, on retry.
-                if ($attempt < $this->maxRetries) {
+                // Jamais de réponse du serveur (DNS, connexion refusée, timeout...) — transitoire, on retry
+                // (sauf pour un POST sans clé d'idempotence fournie : le serveur a pu le traiter).
+                if ($retryTransport && $attempt < $this->maxRetries) {
                     usleep((int) ($this->backoff($attempt) * 1_000_000));
                     $attempt++;
                     continue;
@@ -152,7 +161,7 @@ class HttpClient
                     $data = json_decode((string) $r->getBody(), true) ?? [];
                     $this->raiseForStatus($r->getStatusCode(), $data, $r);
                 }
-                if ($attempt < $this->maxRetries) {
+                if ($retryTransport && $attempt < $this->maxRetries) {
                     usleep((int) ($this->backoff($attempt) * 1_000_000));
                     $attempt++;
                     continue;
@@ -201,6 +210,10 @@ class HttpClient
 
     private function raiseForStatus(int $status, array $data, mixed $response): never
     {
+        // Les routes Connect renvoient {"error": {"code", "message"}} : on aplatit pour lire le même format partout.
+        if (isset($data['error']) && is_array($data['error'])) {
+            $data = array_merge($data, $data['error']);
+        }
         $message = $data['message'] ?? $data['detail'] ?? 'API error';
         if (is_array($message)) {
             $message = implode(' | ', $message);
@@ -226,6 +239,13 @@ class HttpClient
                 $data,
                 type: 'PERMISSION_ERROR',
             ),
+            $status === 403 && $code === 'platform_partner_required' => throw new Exception\SanghoPlatformPartnerRequiredException(
+                $message,
+                $rawCode,
+                403,
+                $data,
+                type: 'PERMISSION_ERROR',
+            ),
             $status === 403 => throw new Exception\SanghoPermissionException(
                 $message,
                 'permission_denied',
@@ -240,9 +260,18 @@ class HttpClient
                 $data,
                 type: 'NOT_FOUND_ERROR',
             ),
-            $status === 409 => throw new Exception\SanghoIdempotencyException(
+            // Sans code (ancien backend) ou `idempotency_conflict` : clé d'idempotence rejouée avec un autre corps ;
+            // tout autre code est un conflit d'état métier (ex : `account_not_claimed`).
+            $status === 409 && ($code === null || $code === 'idempotency_conflict') => throw new Exception\SanghoIdempotencyException(
                 'Idempotency key reused with different request parameters.',
                 'idempotency_conflict',
+                409,
+                $data,
+                type: 'CONFLICT_ERROR',
+            ),
+            $status === 409 => throw new Exception\SanghoConflictException(
+                $message,
+                'conflict',
                 409,
                 $data,
                 type: 'CONFLICT_ERROR',

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Sangho\Resource;
 
 use Sangho\Exception\SanghoException;
+use Sangho\Exception\SanghoWebhookSignatureException;
 
 class Webhooks extends AbstractResource
 {
@@ -19,10 +20,10 @@ class Webhooks extends AbstractResource
         $this->http->assertSecretKey('webhooks.retrieve');
         return $this->http->get("{$this->path}{$id}/");
     }
-    public function create(array $p): array
+    public function create(array $p, ?string $idempotencyKey = null): array
     {
         $this->http->assertSecretKey('webhooks.create');
-        return $this->http->post($this->path, $p);
+        return $this->http->post($this->path, $p, $idempotencyKey);
     }
     public function update(string $id, array $p): array
     {
@@ -73,27 +74,92 @@ class Webhooks extends AbstractResource
     {
         return $this->http->options($this->path);
     }
+    /**
+     * Vérifie la signature HMAC-SHA256 et retourne l'événement (tableau).
+     *
+     * `Sangho-Signature: t=<ts>,v1=<hex>[,v1=<hex>…]` ; message signé "<ts>.<corps brut>". Plusieurs `v1` (et une liste
+     * de secrets) sont acceptés pour la rotation ; comparaison à temps constant. Passez le corps BRUT reçu.
+     *
+     * @param string|list<string> $secret
+     * @return array<string, mixed>
+     * @throws SanghoWebhookSignatureException `reason` : malformed / expired / mismatch
+     */
     public static function constructEvent(
         string $payload,
         string $signatureHeader,
-        string $secret,
+        string|array $secret,
         int $tolerance = 300
     ): array {
-        $parts = [];
-        foreach (explode(',', $signatureHeader) as $p) {
-            [$k, $v] = explode('=', $p, 2) + [null, null];
-            $parts[$k] = $v;
+        [$timestamp, $signatures] = self::parseHeader($signatureHeader);
+
+        if (abs(time() - $timestamp) > $tolerance) {
+            throw new SanghoWebhookSignatureException(SanghoWebhookSignatureException::EXPIRED, 'Webhook timestamp too old.');
         }
-        if (!($parts['t'] ?? null) || !($parts['v1'] ?? null)) {
-            throw new SanghoException('Invalid Sangho-Signature header.', 'invalid_signature');
+
+        $matched = false;
+        foreach ((array) $secret as $candidate) {
+            if (!is_string($candidate) || $candidate === '') {
+                continue;
+            }
+            $expected = hash_hmac('sha256', "{$timestamp}.{$payload}", $candidate);
+            foreach ($signatures as $received) {   // pas de court-circuit : temps indépendant du v1 correspondant
+                if (hash_equals($expected, $received)) {
+                    $matched = true;
+                }
+            }
         }
-        if (abs(time() - (int) $parts['t']) > $tolerance) {
-            throw new SanghoException('Webhook timestamp too old.', 'stale_event');
+        if (!$matched) {
+            throw new SanghoWebhookSignatureException(SanghoWebhookSignatureException::MISMATCH, 'Webhook signature mismatch.');
         }
-        $expected = hash_hmac('sha256', "{$parts['t']}.{$payload}", $secret);
-        if (!hash_equals($expected, $parts['v1'])) {
-            throw new SanghoException('Webhook signature mismatch.', 'invalid_signature');
+
+        try {
+            $event = json_decode($payload, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException) {
+            throw new SanghoException('Webhook body is not valid JSON.', 'invalid_payload', 400);
         }
-        return json_decode($payload, true, 512, JSON_THROW_ON_ERROR);
+        return is_array($event) ? $event : [];
+    }
+
+    /**
+     * Génère un en-tête `Sangho-Signature` valide pour tester votre endpoint.
+     */
+    public static function generateTestHeader(string $payload, string $secret, ?int $timestamp = null): string
+    {
+        $ts = $timestamp ?? time();
+        return "t={$ts},v1=" . hash_hmac('sha256', "{$ts}.{$payload}", $secret);
+    }
+
+    /**
+     * @return array{0: int, 1: list<string>}
+     */
+    private static function parseHeader(string $header): array
+    {
+        $malformed = fn() => new SanghoWebhookSignatureException(
+            SanghoWebhookSignatureException::MALFORMED,
+            'Invalid Sangho-Signature header.'
+        );
+        if ($header === '') {
+            throw $malformed();
+        }
+        $timestamp = null;
+        $signatures = [];
+        foreach (explode(',', $header) as $part) {
+            if (!str_contains($part, '=')) {
+                continue;
+            }
+            [$key, $value] = array_map('trim', explode('=', $part, 2));
+            if ($key === 't') {
+                if (!ctype_digit($value)) {
+                    throw $malformed();
+                }
+                $timestamp = (int) $value;
+            } elseif ($key === 'v1' && $value !== '') {
+                $signatures[] = $value;
+            }
+        }
+        if ($timestamp === null || $signatures === []) {
+            throw $malformed();
+        }
+        return [$timestamp, $signatures];
     }
 }

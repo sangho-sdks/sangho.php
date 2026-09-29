@@ -1285,8 +1285,8 @@ parameters:
 			path: lib/Resource/Transactions.php
 
 		-
-			message: '#^Method Sangho\\Resource\\Webhooks\:\:constructEvent\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: lib/Resource/Webhooks.php
 
@@ -1421,15 +1421,3 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: lib/Resource/Webhooks.php
-
-		-
-			message: '#^Method Sangho\\Sangho\:\:constructEvent\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: lib/Sangho.php
-
-		-
-			message: '#^Method Sangho\\SanghoClient\:\:constructEvent\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: lib/SanghoClient.php

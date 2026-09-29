@@ -7,11 +7,11 @@ Ce projet respecte le [Semantic Versioning](https://semver.org/lang/fr/).
 
 ---
 
-## [Unreleased]
+## [0.2.0] - 2026-09-29
 
 > **Versionnement.** Les versions 1.0.0 à 1.1.0 ci-dessous étaient internes : ce SDK n'a jamais été publié
 > (Packagist). La numérotation est réalignée sur celle du SDK JS (`@sanghosdk/js` 0.1.4, seul SDK publié), comme le
-> demande `CONTRIBUTING.md` (« tous les SDKs sont versionnés de façon synchronisée »). Version courante : **0.1.4**.
+> demande `CONTRIBUTING.md` (« tous les SDKs sont versionnés de façon synchronisée »). Version courante : **0.2.0** (0.1.4 = alignement sur l'API ; 0.2.0 y ajoute Connect et la vérification des signatures webhook, ex-"1.3.0" interne ci-dessous).
 
 ### Added
 - `subscriptions->reactivate($id)` — `POST /subscriptions/{id}/reactivate/`.
@@ -33,7 +33,42 @@ Méthodes qui appelaient des routes **inexistantes** côté API (elles répondai
 `receipts->send`, `refunds->update`, `security->rollSecretKey/listSessions/revokeSession`.
 
 ### Fixed
-- Version du SDK (`SDK_VERSION`, en-tête `X-Sangho-SDK`, `composer.json`) alignée sur 0.1.4.
+- Version du SDK (`SDK_VERSION`, en-tête `X-Sangho-SDK`, `composer.json`) alignée sur 0.2.0.
+
+---
+
+## [1.3.0] (interne, fusionnée dans 0.2.0) - 2026-09-27
+
+### Added
+- **Paiement sécurisé à la livraison (Connect)** — `$client->connect->payments` : `retrieve`, `release`, `refund` (`scope` : `product` / `full` / `amount`), `freeze`, `unfreeze`, `simulatePayment` (sandbox) ; `$client->connect->accounts->balance()`, `createPayout()` et `listPayouts()`.
+- Clé d'idempotence OBLIGATOIRE sur `release`, `refund` et `createPayout` : `SanghoValidationException` levée avant tout appel réseau si elle manque.
+- `checkoutSessions->create([..., 'connect' => [...]])` (compte, mode, commission, `reserve_rate`, `external_reference`) ; réponse `connect_payment`.
+
+### Non fait
+- Liaison OAuth2 d'un compte existant et gestion des clients OAuth (`SANGHO_CLIENT_ID` / `SANGHO_SECRET`) par l'API : non exposés par le backend.
+
+---
+
+## [1.2.0] - 2026-09-25
+
+### Added
+- **Marketplace / Connect** : `$client->connect->accounts` — `create` (idempotent par `external_id`, `claim_token` renvoyé une seule fois), `retrieve`, `list`, `reissueClaimToken` et `createKycSession` (KYC hébergé par Sangho, `POST /connect/accounts/{id}/kyc-session/`).
+- Événements webhook `account.updated` et `kyc.updated` (le payload est le compte Connect dans `data.object`).
+- `Webhooks::constructEvent` accepte un tableau de secrets (rotation) et plusieurs valeurs `v1` ; nouvelle exception `SanghoWebhookSignatureException` (`reason` : `malformed` / `expired` / `mismatch`) ; helper de test `generateTestHeader` (`Webhooks`, `SanghoClient`, `Sangho`).
+- **Idempotence (SDK-02)** : toutes les méthodes `create` acceptent `?string $idempotencyKey` (ou `idempotency_key` dans le corps).
+- `SanghoConflictException` : 409 de conflit d'état métier (ex : `account_not_claimed`) ; `SanghoIdempotencyException` reste réservée à l'absence de code ou à `idempotency_conflict`.
+
+### Changed
+- Les réponses d'erreur Connect au format `{"error": {"code", "message"}}` sont lues comme le format plat des autres routes.
+- `SanghoWebhookSignatureException` remplace la `SanghoException` générique de `constructEvent` (sous-classe ; les codes `invalid_signature` / `stale_event` sont conservés).
+
+### Fixed
+- Un POST n'est plus rejoué après un timeout / une erreur réseau lorsque l'appelant n'a pas fourni de clé d'idempotence (risque de doublon côté serveur, notamment sur `checkout-sessions`) ; avec une clé fournie, le rejeu reste actif.
+- `constructEvent` ne retient plus que le dernier `v1` ni ne lève d'erreur PHP sur un en-tête mal formé ; un corps non JSON lève une `SanghoException` explicite.
+
+### Non fait (voir `sangho_sdk_js_ameliorations.md`)
+- Liaison OAuth2 d'un compte existant, paiements avec répartition, séquestre : non exposés par le backend.
+- `dispute.*`, `payment_intent.processing`, `refund.succeeded` : à confirmer côté backend.
 
 ---
 
