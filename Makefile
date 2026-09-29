@@ -9,7 +9,7 @@
 .PHONY: help install test test-filter test-coverage test-integration \
         lint format analyse check build clean \
         version-patch version-minor version-major changelog \
-        publish release-patch release-minor release-major \
+        publish release-current release-patch release-minor release-major \
         _bump _git-tag-and-push _packagist-ping info
 
 # Détection automatique Windows vs Unix
@@ -176,6 +176,13 @@ _packagist-ping:
 # -----------------------------------------------------------------------------
 # RELEASE COMPLÈTE (versioning + git tag + publish)
 # -----------------------------------------------------------------------------
+release-current: ## Publie la version courante telle quelle (tag + publish, sans bump)
+	$(eval CUR_VERSION := $(shell $(PHP) -r "echo json_decode(file_get_contents('composer.json'))->version;"))
+	@echo "$(CYAN)→ Tag v$(CUR_VERSION) (sans bump)...$(RESET)"
+	git tag -a "v$(CUR_VERSION)" -m "Release v$(CUR_VERSION)"
+	git push origin "v$(CUR_VERSION)"
+	$(MAKE) publish
+
 release-patch: ## Release patch complète (bump + tag + publish)
 	$(MAKE) version-patch
 	$(MAKE) _git-tag-and-push
