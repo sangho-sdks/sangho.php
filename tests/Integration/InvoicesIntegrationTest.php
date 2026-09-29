@@ -61,7 +61,7 @@ class InvoicesIntegrationTest extends IntegrationTestCase
         $result = self::$client->invoices->list(['page_size' => 5]);
 
         $this->assertArrayHasKey('count', $result);
-        $this->assertIsArray($result['results']);
+        $this->assertIsArray($result['data']);
     }
 
     public function testFinalizeAndVoidInvoice(): void

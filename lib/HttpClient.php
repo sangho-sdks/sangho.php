@@ -16,9 +16,7 @@ class HttpClient
     public readonly string $keyType; // 'public' | 'secret'
     public readonly bool $sandbox;
 
-    public const SDK_VERSION = '1.1.0';
-
-    private const RETRY_STATUS_CODES = [429, 500, 502, 503, 504];
+    public const SDK_VERSION = '0.1.4';
 
     // Le backend distingue les clés de production ("prod") des clés de test
     // ("test") — il n'existe pas de préfixe "live" côté API Sangho.
@@ -118,9 +116,9 @@ class HttpClient
         return $this->request('PATCH', $path, ['json' => $body]);
     }
 
-    public function delete(string $path): void
+    public function delete(string $path): ?array
     {
-        $this->request('DELETE', $path);
+        return $this->request('DELETE', $path);
     }
 
     public function options(string $path): array
@@ -170,7 +168,8 @@ class HttpClient
 
             $data = json_decode((string) $resp->getBody(), true) ?? [];
 
-            if (in_array($statusCode, self::RETRY_STATUS_CODES, true) && $attempt < $this->maxRetries) {
+            // 429 et tout 5xx sont transitoires (comme le SDK JS) ; les autres 4xx sont permanents : jamais de retry.
+            if (($statusCode === 429 || $statusCode >= 500) && $attempt < $this->maxRetries) {
                 $delay = $statusCode === 429 ? $this->parseRetryAfter($data, $resp) : $this->backoff($attempt);
                 usleep((int) ($delay * 1_000_000));
                 $attempt++;

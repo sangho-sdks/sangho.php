@@ -16,7 +16,7 @@ class SubscriptionsIntegrationTest extends IntegrationTestCase
         $result = self::$client->subscriptions->list(['page_size' => 5]);
 
         $this->assertArrayHasKey('count', $result);
-        $this->assertIsArray($result['results']);
+        $this->assertIsArray($result['data']);
     }
 
     public function testRetrieveNonexistentThrowsNotFound(): void

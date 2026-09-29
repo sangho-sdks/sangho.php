@@ -16,7 +16,7 @@ class AuthIntegrationTest extends IntegrationTestCase
     public function testValidSecretKeyAuthenticates(): void
     {
         $result = self::$client->customers->list(['page_size' => 1]);
-        $this->assertArrayHasKey('results', $result);
+        $this->assertArrayHasKey('data', $result);
     }
 
     public function testInvalidKeyRaisesAuthError(): void

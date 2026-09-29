@@ -37,11 +37,6 @@ class Invoices extends AbstractResource
         $this->http->assertSecretKey('invoices.pay');
         return $this->http->post("{$this->path}{$id}/pay/", $p);
     }
-    public function finalize(string $id): array
-    {
-        $this->http->assertSecretKey('invoices.finalize');
-        return $this->http->post("{$this->path}{$id}/finalize/");
-    }
     public function void(string $id): array
     {
         $this->http->assertSecretKey('invoices.void');

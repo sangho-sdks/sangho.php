@@ -22,11 +22,6 @@ class Refunds extends AbstractResource
         $this->http->assertSecretKey('refunds.create');
         return $this->http->post($this->path, $p);
     }
-    public function update(string $id, array $p): array
-    {
-        $this->http->assertSecretKey('refunds.update');
-        return $this->http->patch("{$this->path}{$id}/", $p);
-    }
     public function cancel(string $id): array
     {
         $this->http->assertSecretKey('refunds.cancel');

@@ -17,21 +17,6 @@ class PaymentMethods extends AbstractResource
         $this->http->assertSecretKey('paymentMethods.retrieve');
         return $this->http->get("{$this->path}{$id}/");
     }
-    public function create(array $p): array
-    {
-        $this->http->assertSecretKey('paymentMethods.create');
-        return $this->http->post($this->path, $p);
-    }
-    public function update(string $id, array $p): array
-    {
-        $this->http->assertSecretKey('paymentMethods.update');
-        return $this->http->patch("{$this->path}{$id}/", $p);
-    }
-    public function delete(string $id): void
-    {
-        $this->http->assertSecretKey('paymentMethods.delete');
-        $this->http->delete("{$this->path}{$id}/");
-    }
     public function setDefault(string $id): array
     {
         $this->http->assertSecretKey('paymentMethods.setDefault');

@@ -36,13 +36,13 @@ class CustomersTest extends TestCase
         $customers = $this->makeClient([
             new Response(200, [], json_encode([
                 'count' => 1, 'next' => null, 'previous' => null,
-                'results' => [['id' => 'cust_1', 'email' => 'a@b.com']]
+                'data' => [['id' => 'cust_1', 'email' => 'a@b.com']]
             ]))
         ]);
 
         $result = $customers->list();
         $this->assertEquals(1, $result['count']);
-        $this->assertEquals('a@b.com', $result['results'][0]['email']);
+        $this->assertEquals('a@b.com', $result['data'][0]['email']);
     }
 
     public function testRetrieveCustomer(): void

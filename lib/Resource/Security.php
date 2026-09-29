@@ -34,21 +34,6 @@ class Security extends AbstractResource
         $remaining = array_values(array_diff($profile['allowed_ips'] ?? [], $ips));
         return $this->update(['allowed_ips' => $remaining]);
     }
-    public function rollSecretKey(): array
-    {
-        $this->http->assertSecretKey('security.rollSecretKey');
-        return $this->http->post("{$this->path}roll-secret/");
-    }
-    public function listSessions(array $c = []): array
-    {
-        $this->http->assertSecretKey('security.listSessions');
-        return $this->http->get("{$this->path}sessions/", $c);
-    }
-    public function revokeSession(string $sessionId): void
-    {
-        $this->http->assertSecretKey('security.revokeSession');
-        $this->http->delete("{$this->path}sessions/{$sessionId}/");
-    }
     public function options(): array
     {
         return $this->http->options($this->path);

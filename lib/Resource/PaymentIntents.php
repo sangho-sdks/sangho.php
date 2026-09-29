@@ -42,6 +42,13 @@ class PaymentIntents extends AbstractResource
         $this->http->assertSecretKey('paymentIntents.cancel');
         return $this->http->post("{$this->path}{$id}/cancel/", $p);
     }
+    /** `DELETE` est un alias de cancel() côté API (comme Stripe : on annule, on ne supprime pas). */
+    public function delete(string $id): array
+    {
+        $this->http->assertSecretKey('paymentIntents.delete');
+        return $this->http->delete("{$this->path}{$id}/") ?? [];
+    }
+
     public function options(): array
     {
         return $this->http->options($this->path);

@@ -66,7 +66,7 @@ class PaymentIntentsIntegrationTest extends IntegrationTestCase
     {
         $result = self::$client->paymentIntents->list(['page_size' => 5]);
         $this->assertArrayHasKey('count', $result);
-        $this->assertIsArray($result['results']);
+        $this->assertIsArray($result['data']);
     }
 
     public function testCancelPaymentIntent(): void

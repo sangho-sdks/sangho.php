@@ -56,7 +56,7 @@ class WebhooksIntegrationTest extends IntegrationTestCase
     public function testListWebhooks(): void
     {
         $result = self::$client->webhooks->list();
-        $this->assertArrayHasKey('results', $result);
+        $this->assertArrayHasKey('data', $result);
     }
 
     public function testRollSecret(): void
@@ -68,7 +68,7 @@ class WebhooksIntegrationTest extends IntegrationTestCase
     public function testListDeliveries(): void
     {
         $result = self::$client->webhooks->listDeliveries(self::$sharedWebhook['id']);
-        $this->assertArrayHasKey('results', $result);
+        $this->assertArrayHasKey('data', $result);
     }
 
     public function testRetrieveNonexistentThrowsNotFound(): void

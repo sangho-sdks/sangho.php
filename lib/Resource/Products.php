@@ -32,16 +32,6 @@ class Products extends AbstractResource
         $this->http->assertSecretKey('products.delete');
         $this->http->delete("{$this->path}{$id}/");
     }
-    public function archive(string $id): array
-    {
-        $this->http->assertSecretKey('products.archive');
-        return $this->http->post("{$this->path}{$id}/archive/");
-    }
-    public function restore(string $id): array
-    {
-        $this->http->assertSecretKey('products.restore');
-        return $this->http->post("{$this->path}{$id}/restore/");
-    }
     public function options(): array
     {
         return $this->http->options($this->path);

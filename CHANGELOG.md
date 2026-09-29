@@ -9,17 +9,31 @@ Ce projet respecte le [Semantic Versioning](https://semver.org/lang/fr/).
 
 ## [Unreleased]
 
+> **Versionnement.** Les versions 1.0.0 à 1.1.0 ci-dessous étaient internes : ce SDK n'a jamais été publié
+> (Packagist). La numérotation est réalignée sur celle du SDK JS (`@sanghosdk/js` 0.1.4, seul SDK publié), comme le
+> demande `CONTRIBUTING.md` (« tous les SDKs sont versionnés de façon synchronisée »). Version courante : **0.1.4**.
+
 ### Added
+- `subscriptions->reactivate($id)` — `POST /subscriptions/{id}/reactivate/`.
+- `receipts->getPdfUrl($id)` — `GET /receipts/{id}/pdf/` (URL signée `['url', 'expires_at']`).
+- `paymentIntents->delete($id)` — `DELETE /payment-intents/{id}/` (alias de `cancel`, comme chez Stripe).
 
 ### Changed
-
-### Deprecated
+- **Breaking** : les listes paginées exposent `data` (et non `results`), conformément à la pagination réelle de l'API.
+- `customers->listPaymentMethods($id)` filtre `GET /payment-methods/?customer=<id>` (la route
+  `/customers/{id}/payment-methods/` n'existe pas côté API).
+- `HttpClient::delete()` retourne le corps de la réponse (`?array`) au lieu de `void`.
+- Tout `5xx` est retenté avec backoff exponentiel (et non plus seulement 500/502/503/504), comme le SDK JS.
 
 ### Removed
+Méthodes qui appelaient des routes **inexistantes** côté API (elles répondaient 404/405) :
+`apps->rollSecret`, `customers->listTransactions` (l'API n'a pas de filtre `customer` sur les transactions),
+`invoices->finalize`, `partners->create/update/delete` (ressource en lecture seule),
+`paymentMethods->create/update/delete` (utiliser `attach`/`detach`/`setDefault`), `products->archive/restore`,
+`receipts->send`, `refunds->update`, `security->rollSecretKey/listSessions/revokeSession`.
 
 ### Fixed
-
-### Security
+- Version du SDK (`SDK_VERSION`, en-tête `X-Sangho-SDK`, `composer.json`) alignée sur 0.1.4.
 
 ---
 

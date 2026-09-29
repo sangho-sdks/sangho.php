@@ -32,16 +32,13 @@ class Customers extends AbstractResource
         $this->http->assertSecretKey('customers.delete');
         $this->http->delete("{$this->path}{$id}/");
     }
-    public function listTransactions(string $id, array $c = []): array
-    {
-        $this->http->assertSecretKey('customers.listTransactions');
-        return $this->http->get("{$this->path}{$id}/transactions/", $c);
-    }
-    public function listPaymentMethods(string $id): array
+    /** Moyens de paiement d'un client : `GET /payment-methods/?customer=<id>` (la route /customers/{id}/payment-methods/ n'existe pas). */
+    public function listPaymentMethods(string $id, array $c = []): array
     {
         $this->http->assertSecretKey('customers.listPaymentMethods');
-        return $this->http->get("{$this->path}{$id}/payment-methods/");
+        return $this->http->get('/payment-methods/', [...$c, 'customer' => $id]);
     }
+
     public function options(): array
     {
         return $this->http->options($this->path);

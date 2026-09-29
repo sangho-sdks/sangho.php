@@ -16,8 +16,8 @@ class TransactionsIntegrationTest extends IntegrationTestCase
         $result = self::$client->transactions->list(['page_size' => 5]);
 
         $this->assertArrayHasKey('count', $result);
-        $this->assertIsArray($result['results']);
-        $this->assertLessThanOrEqual(5, count($result['results']));
+        $this->assertIsArray($result['data']);
+        $this->assertLessThanOrEqual(5, count($result['data']));
     }
 
     public function testListTransactionsOrderedByDate(): void
@@ -27,7 +27,7 @@ class TransactionsIntegrationTest extends IntegrationTestCase
             'page_size' => 10,
         ]);
 
-        $this->assertArrayHasKey('results', $result);
+        $this->assertArrayHasKey('data', $result);
     }
 
     public function testRetrieveNonexistentThrowsNotFound(): void

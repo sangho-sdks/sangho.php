@@ -42,6 +42,12 @@ class Subscriptions extends AbstractResource
         $this->http->assertSecretKey('subscriptions.resume');
         return $this->http->post("{$this->path}{$id}/resume/");
     }
+    public function reactivate(string $id): array
+    {
+        $this->http->assertSecretKey('subscriptions.reactivate');
+        return $this->http->post("{$this->path}{$id}/reactivate/");
+    }
+
     public function options(): array
     {
         return $this->http->options($this->path);

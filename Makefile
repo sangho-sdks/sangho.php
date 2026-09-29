@@ -125,13 +125,13 @@ endif
 # -----------------------------------------------------------------------------
 # VERSIONING (Semantic Versioning)
 # -----------------------------------------------------------------------------
-version-patch: check test ## Bump patch version (1.1.0 → 1.1.1)
+version-patch: check test ## Bump patch version (0.1.4 → 0.1.5)
 	@$(MAKE) _bump PART=patch
 
-version-minor: check test ## Bump minor version (1.1.0 → 1.2.0)
+version-minor: check test ## Bump minor version (0.1.4 → 0.2.0)
 	@$(MAKE) _bump PART=minor
 
-version-major: check test ## Bump major version (1.1.0 → 2.0.0)
+version-major: check test ## Bump major version (0.1.4 → 1.0.0)
 	@$(MAKE) _bump PART=major
 
 _bump: ## (Interne) Bump la clé "version" de composer.json + HttpClient::SDK_VERSION

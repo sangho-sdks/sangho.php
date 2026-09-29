@@ -59,9 +59,9 @@ class ProductsIntegrationTest extends IntegrationTestCase
         $result = self::$client->products->list(['page_size' => 5]);
 
         $this->assertArrayHasKey('count', $result);
-        $this->assertArrayHasKey('results', $result);
-        $this->assertIsArray($result['results']);
-        $this->assertLessThanOrEqual(5, count($result['results']));
+        $this->assertArrayHasKey('data', $result);
+        $this->assertIsArray($result['data']);
+        $this->assertLessThanOrEqual(5, count($result['data']));
     }
 
     public function testUpdateProduct(): void

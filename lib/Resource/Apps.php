@@ -32,11 +32,6 @@ class Apps extends AbstractResource
         $this->http->assertSecretKey('apps.delete');
         $this->http->delete("{$this->path}{$id}/");
     }
-    public function rollSecret(string $id): array
-    {
-        $this->http->assertSecretKey('apps.rollSecret');
-        return $this->http->post("{$this->path}{$id}/roll-secret/");
-    }
     public function keys(string $id): array
     {
         $this->http->assertSecretKey('apps.keys');

@@ -17,12 +17,13 @@ class Receipts extends AbstractResource
         $this->http->assertSecretKey('receipts.retrieve');
         return $this->http->get("{$this->path}{$id}/");
     }
-    public function send(string $id, ?string $email = null): array
+    /** URL signée et expirante du PDF : `['url' => ..., 'expires_at' => ...]`. */
+    public function getPdfUrl(string $id): array
     {
-        $this->http->assertSecretKey('receipts.send');
-        $b = $email ? ['email' => $email] : [];
-        return $this->http->post("{$this->path}{$id}/send/", $b);
+        $this->http->assertSecretKey('receipts.getPdfUrl');
+        return $this->http->get("{$this->path}{$id}/pdf/");
     }
+
     public function options(): array
     {
         return $this->http->options($this->path);

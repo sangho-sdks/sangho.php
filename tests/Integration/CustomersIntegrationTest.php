@@ -70,17 +70,17 @@ class CustomersIntegrationTest extends IntegrationTestCase
         $result = self::$client->customers->list(['page_size' => 5]);
 
         $this->assertArrayHasKey('count', $result);
-        $this->assertArrayHasKey('results', $result);
+        $this->assertArrayHasKey('data', $result);
         $this->assertArrayHasKey('next', $result);
-        $this->assertIsArray($result['results']);
-        $this->assertLessThanOrEqual(5, count($result['results']));
+        $this->assertIsArray($result['data']);
+        $this->assertLessThanOrEqual(5, count($result['data']));
     }
 
     public function testListCustomersFilterByStatus(): void
     {
         $result = self::$client->customers->list(['status' => 'active', 'page_size' => 10]);
 
-        foreach ($result['results'] as $customer) {
+        foreach ($result['data'] as $customer) {
             $this->assertSame('active', $customer['status']);
         }
     }
@@ -88,7 +88,7 @@ class CustomersIntegrationTest extends IntegrationTestCase
     public function testListCustomersSearch(): void
     {
         $result = self::$client->customers->list(['search' => self::$sharedCustomer['email']]);
-        $ids    = array_column($result['results'], 'id');
+        $ids    = array_column($result['data'], 'id');
 
         $this->assertContains(self::$sharedCustomer['id'], $ids);
     }
@@ -120,8 +120,8 @@ class CustomersIntegrationTest extends IntegrationTestCase
     {
         $result = self::$client->customers->listTransactions(self::$sharedCustomer['id']);
 
-        $this->assertArrayHasKey('results', $result);
-        $this->assertIsArray($result['results']);
+        $this->assertArrayHasKey('data', $result);
+        $this->assertIsArray($result['data']);
     }
 
     // ── Erreurs ───────────────────────────────────────────────────────────────
