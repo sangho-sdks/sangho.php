@@ -23,6 +23,15 @@ final class ApiAlignmentTest extends TestCase
     /** @var array<int, array{request: \Psr\Http\Message\RequestInterface}> */
     private array $history = [];
 
+    private function guzzle(HandlerStack $stack): Client
+    {
+        return new Client([
+            'handler' => $stack,
+            'http_errors' => false,
+            'base_uri' => 'https://api.sangho.ga/v1/',
+        ]);
+    }
+
     private function http(array $responses): HttpClient
     {
         $this->history = [];
@@ -30,7 +39,7 @@ final class ApiAlignmentTest extends TestCase
         $stack->push(Middleware::history($this->history));
         $http = new HttpClient('sk_test_abc123456789', 'https://api.sangho.ga/v1', 30, 0);
         $prop = new \ReflectionProperty(HttpClient::class, 'guzzle');
-        $prop->setValue($http, new Client(['handler' => $stack, 'http_errors' => false, 'base_uri' => 'https://api.sangho.ga/v1/']));
+        $prop->setValue($http, $this->guzzle($stack));
         return $http;
     }
 
@@ -42,7 +51,8 @@ final class ApiAlignmentTest extends TestCase
     private function lastCall(): string
     {
         $r = $this->history[count($this->history) - 1]['request'];
-        return $r->getMethod() . ' ' . $r->getUri()->getPath() . ($r->getUri()->getQuery() ? '?' . $r->getUri()->getQuery() : '');
+        $query = $r->getUri()->getQuery();
+        return $r->getMethod() . ' ' . $r->getUri()->getPath() . ($query ? '?' . $query : '');
     }
 
     public function testSubscriptionsReactivate(): void
@@ -54,7 +64,8 @@ final class ApiAlignmentTest extends TestCase
 
     public function testReceiptsPdfUrl(): void
     {
-        $r = new \Sangho\Resource\Receipts($this->http([$this->json(['url' => 'https://x/y.pdf', 'expires_at' => '2026-01-01T00:00:00Z'])]));
+        $body = ['url' => 'https://x/y.pdf', 'expires_at' => '2026-01-01T00:00:00Z'];
+        $r = new \Sangho\Resource\Receipts($this->http([$this->json($body)]));
         $this->assertStringEndsWith('.pdf', $r->getPdfUrl('rcp_1')['url']);
         $this->assertSame('GET /v1/receipts/rcp_1/pdf/', $this->lastCall());
     }
@@ -76,8 +87,11 @@ final class ApiAlignmentTest extends TestCase
     public function testServerErrorsAreRetried(): void
     {
         $http = new HttpClient('sk_test_abc123456789', 'https://api.sangho.ga/v1', 30, 1);
-        $stack = HandlerStack::create(new MockHandler([$this->json(['message' => 'boom'], 503), $this->json(['id' => 'ok'])]));
-        (new \ReflectionProperty(HttpClient::class, 'guzzle'))->setValue($http, new Client(['handler' => $stack, 'http_errors' => false, 'base_uri' => 'https://api.sangho.ga/v1/']));
+        $stack = HandlerStack::create(new MockHandler([
+            $this->json(['message' => 'boom'], 503),
+            $this->json(['id' => 'ok']),
+        ]));
+        (new \ReflectionProperty(HttpClient::class, 'guzzle'))->setValue($http, $this->guzzle($stack));
         $this->assertSame('ok', $http->get('/products/x/')['id']);
     }
 
@@ -85,14 +99,22 @@ final class ApiAlignmentTest extends TestCase
     public static function phantoms(): array
     {
         return [
-            'apps.rollSecret' => ['Apps', 'rollSecret'], 'customers.listTransactions' => ['Customers', 'listTransactions'],
-            'invoices.finalize' => ['Invoices', 'finalize'], 'partners.create' => ['Partners', 'create'],
-            'partners.update' => ['Partners', 'update'], 'partners.delete' => ['Partners', 'delete'],
-            'paymentMethods.create' => ['PaymentMethods', 'create'], 'paymentMethods.update' => ['PaymentMethods', 'update'],
-            'paymentMethods.delete' => ['PaymentMethods', 'delete'], 'products.archive' => ['Products', 'archive'],
-            'products.restore' => ['Products', 'restore'], 'receipts.send' => ['Receipts', 'send'],
-            'refunds.update' => ['Refunds', 'update'], 'security.rollSecretKey' => ['Security', 'rollSecretKey'],
-            'security.listSessions' => ['Security', 'listSessions'], 'security.revokeSession' => ['Security', 'revokeSession'],
+            'apps.rollSecret' => ['Apps', 'rollSecret'],
+            'customers.listTransactions' => ['Customers', 'listTransactions'],
+            'invoices.finalize' => ['Invoices', 'finalize'],
+            'partners.create' => ['Partners', 'create'],
+            'partners.update' => ['Partners', 'update'],
+            'partners.delete' => ['Partners', 'delete'],
+            'paymentMethods.create' => ['PaymentMethods', 'create'],
+            'paymentMethods.update' => ['PaymentMethods', 'update'],
+            'paymentMethods.delete' => ['PaymentMethods', 'delete'],
+            'products.archive' => ['Products', 'archive'],
+            'products.restore' => ['Products', 'restore'],
+            'receipts.send' => ['Receipts', 'send'],
+            'refunds.update' => ['Refunds', 'update'],
+            'security.rollSecretKey' => ['Security', 'rollSecretKey'],
+            'security.listSessions' => ['Security', 'listSessions'],
+            'security.revokeSession' => ['Security', 'revokeSession'],
         ];
     }
 
