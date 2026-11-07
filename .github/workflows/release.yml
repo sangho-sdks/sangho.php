@@ -56,4 +56,4 @@ jobs:
 
       - name: Read released version
         id: release
-        run: echo "version=$(php -r "echo json_decode(file_get_contents('composer.json'))->version;")" >> "$GITHUB_OUTPUT"
+        run: echo "version=$(grep -oP "SDK_VERSION = '\K[0-9.]+" lib/HttpClient.php)" >> "$GITHUB_OUTPUT"
