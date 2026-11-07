@@ -3,15 +3,14 @@
   "description": "SDK officiel PHP pour l'API Sangho",
   "type": "library",
   "license": "MIT",
-  "version": "0.2.0",
   "authors": [
     {
       "name": "Sangho",
       "email": "nels.holy.allg@gmail.com"
     }
   ],
-  "homepage": "https://docs.sangho.ga/api/sdks/php/",
-  "keywords": ["sangho", "payments", "africa", "xaf", "mobile-money", "sdk", "php"],
+  "homepage": "https://sangho.ga",
+  "keywords": ["sangho", "payments", "payment-gateway", "africa", "gabon", "cemac", "xaf", "mobile-money", "fintech", "webhooks", "api-client", "sdk", "php"],
   "require": {
     "php": "^8.2 || ^8.3 || ^8.4 || ^8.5",
     "guzzlehttp/guzzle": "^7.10",
@@ -43,6 +42,7 @@
   "support": {
     "source": "https://github.com/sangho-sdks/sangho.php",
     "issues": "https://github.com/sangho-sdks/sangho.php/issues",
-    "docs": "https://docs.sangho.ga/api/sdks/php/"
+    "docs": "https://docs.sangho.ga/api/sdks/php/",
+    "wiki": "https://docs.sangho.ga"
   }
 }

@@ -1,3 +1,4 @@
+# Makefile
 # =============================================================================
 # Sangho SDK PHP — Makefile
 # =============================================================================
@@ -10,7 +11,7 @@
         lint format analyse check build clean \
         version-patch version-minor version-major changelog \
         publish release-current release-patch release-minor release-major \
-        _bump _git-tag-and-push _packagist-ping info
+        _bump _git-tag-and-push _packagist-ping commit info
 
 # Détection automatique Windows vs Unix
 ifeq ($(OS),Windows_NT)
@@ -39,7 +40,7 @@ GREEN  := \033[32m
 YELLOW := \033[33m
 CYAN   := \033[36m
 
-VERSION  := $(shell $(PHP) -r "echo json_decode(file_get_contents('composer.json'))->version;" 2>/dev/null || echo "0.0.0")
+VERSION  := $(shell $(PHP) -r "preg_match('/SDK_VERSION = .([0-9.]+)/', file_get_contents('lib/HttpClient.php'), \$$m); echo \$$m[1];" 2>/dev/null || echo "0.0.0")
 
 # -----------------------------------------------------------------------------
 # AIDE
@@ -134,24 +135,22 @@ version-minor: check test ## Bump minor version (0.1.4 → 0.2.0)
 version-major: check test ## Bump major version (0.1.4 → 1.0.0)
 	@$(MAKE) _bump PART=major
 
-_bump: ## (Interne) Bump la clé "version" de composer.json + HttpClient::SDK_VERSION
+_bump: ## (Interne) Bump HttpClient::SDK_VERSION (source de vérité de la version)
 	@echo "$(CYAN)→ Bump $(PART)...$(RESET)"
 	@$(PHP) -r "\
-	\$$composer = json_decode(file_get_contents('composer.json'), true); \
-	[\$$major, \$$minor, \$$patch] = array_map('intval', explode('.', \$$composer['version'])); \
+	\$$httpClient = file_get_contents('lib/HttpClient.php'); \
+	preg_match('/SDK_VERSION = .([0-9.]+)/', \$$httpClient, \$$m); \
+	[\$$major, \$$minor, \$$patch] = array_map('intval', explode('.', \$$m[1])); \
 	\$$new = match ('$(PART)') { \
 	    'major' => [\$$major + 1, 0, 0], \
 	    'minor' => [\$$major, \$$minor + 1, 0], \
 	    default => [\$$major, \$$minor, \$$patch + 1], \
 	}; \
 	\$$newVersion = implode('.', \$$new); \
-	\$$composer['version'] = \$$newVersion; \
-	file_put_contents('composer.json', json_encode(\$$composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . \"\n\"); \
-	\$$httpClient = file_get_contents('lib/HttpClient.php'); \
 	\$$httpClient = preg_replace('/SDK_VERSION = \'[^\']+\'/', \"SDK_VERSION = '{\$$newVersion}'\", \$$httpClient); \
 	file_put_contents('lib/HttpClient.php', \$$httpClient); \
 	echo \$$newVersion;"
-	@echo "$(GREEN)✓ Nouvelle version : $(shell $(PHP) -r "echo json_decode(file_get_contents('composer.json'))->version;")$(RESET)"
+	@echo "$(GREEN)✓ Nouvelle version : $(shell $(PHP) -r "preg_match('/SDK_VERSION = .([0-9.]+)/', file_get_contents('lib/HttpClient.php'), \$$m); echo \$$m[1];")$(RESET)"
 
 changelog: ## Rappelle de documenter la release dans CHANGELOG.md
 	@echo "$(YELLOW)⚠ Ajoutez une entrée dans CHANGELOG.md avant de release.$(RESET)"
@@ -159,6 +158,8 @@ changelog: ## Rappelle de documenter la release dans CHANGELOG.md
 # -----------------------------------------------------------------------------
 # PUBLICATION Packagist
 # -----------------------------------------------------------------------------
+# La version vient de HttpClient::SDK_VERSION (composer.json n'a plus de clé "version" :
+# Packagist déduit la version du tag git).
 # Packagist n'a pas de commande "publish" : un package déjà enregistré se
 # resynchronise automatiquement via le webhook GitHub à chaque push de tag.
 # `make publish` ne fait qu'accélérer cette synchronisation via l'API
@@ -174,10 +175,19 @@ _packagist-ping:
 		&& echo "$(GREEN)✓ Packagist notifié$(RESET)"
 
 # -----------------------------------------------------------------------------
+# GIT
+# -----------------------------------------------------------------------------
+commit: ## Commit tous les changements avec commit.txt comme message
+	@echo "$(CYAN)→ Commit (message : commit.txt)...$(RESET)"
+	git add -A
+	git commit -F commit.txt
+	@echo "$(GREEN)✓ Commit créé$(RESET)"
+
+# -----------------------------------------------------------------------------
 # RELEASE COMPLÈTE (versioning + git tag + publish)
 # -----------------------------------------------------------------------------
 release-current: ## Publie la version courante telle quelle (tag + publish, sans bump)
-	$(eval CUR_VERSION := $(shell $(PHP) -r "echo json_decode(file_get_contents('composer.json'))->version;"))
+	$(eval CUR_VERSION := $(shell $(PHP) -r "preg_match('/SDK_VERSION = .([0-9.]+)/', file_get_contents('lib/HttpClient.php'), \$$m); echo \$$m[1];"))
 	@echo "$(CYAN)→ Tag v$(CUR_VERSION) (sans bump)...$(RESET)"
 	git tag -a "v$(CUR_VERSION)" -m "Release v$(CUR_VERSION)"
 	git push origin "v$(CUR_VERSION)"
@@ -199,7 +209,7 @@ release-major: ## Release major complète (bump + tag + publish)
 	$(MAKE) publish
 
 _git-tag-and-push:
-	$(eval NEW_VERSION := $(shell $(PHP) -r "echo json_decode(file_get_contents('composer.json'))->version;"))
+	$(eval NEW_VERSION := $(shell $(PHP) -r "preg_match('/SDK_VERSION = .([0-9.]+)/', file_get_contents('lib/HttpClient.php'), \$$m); echo \$$m[1];"))
 	@echo "$(CYAN)→ Git commit + tag v$(NEW_VERSION)...$(RESET)"
 	git add composer.json lib/HttpClient.php CHANGELOG.md
 	git commit -m "chore: release v$(NEW_VERSION)"
