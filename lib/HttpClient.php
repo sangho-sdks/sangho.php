@@ -16,7 +16,7 @@ class HttpClient
     public readonly string $keyType; // 'public' | 'secret'
     public readonly bool $sandbox;
 
-    public const SDK_VERSION = '0.2.0';
+    public const SDK_VERSION = '0.2.1';
 
     // Le backend distingue les clés de production ("prod") des clés de test
     // ("test") — il n'existe pas de préfixe "live" côté API Sangho.
